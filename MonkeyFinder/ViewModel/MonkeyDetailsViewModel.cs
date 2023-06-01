@@ -9,6 +9,6 @@
 		}
 
 		[ObservableProperty]
-		Monkey Monkey;
+		Monkey monkey;
 	}
 }
