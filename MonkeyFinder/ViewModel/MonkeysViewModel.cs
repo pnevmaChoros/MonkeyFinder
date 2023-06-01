@@ -1,4 +1,5 @@
 ﻿using MonkeyFinder.Services;
+using MonkeyFinder.View;
 
 namespace MonkeyFinder.ViewModel;
 
@@ -11,6 +12,18 @@ public partial class MonkeysViewModel : BaseViewModel
 	{
 		Title = "Monkey Finder";
 		this.monkeyService = monkeyService;
+	}
+
+	[RelayCommand]
+	async Task GotoDetailsAsync(Monkey monkey)
+	{
+		if (monkey is null) return;
+
+
+		await Shell.Current.GoToAsync($"{nameof(DetailsPage)}?id{monkey.Name}", true, new Dictionary<string, object>
+		{
+			{"Monkey", monkey }
+		});
 	}
 
 	[RelayCommand]
