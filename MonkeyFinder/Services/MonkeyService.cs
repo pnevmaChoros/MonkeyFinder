@@ -7,15 +7,14 @@ namespace MonkeyFinder.Services
 		HttpClient httpClinet;
 		public MonkeyService()
 		{
-			httpClinet = new HttpClient();
+			this.httpClinet = new HttpClient();
 		}
 
-		List<Monkey> monkeyList = new();
+		List<Monkey> monkeyList;
 
 		public async Task<List<Monkey>> GetMonkeys()
 		{
-			if(monkeyList?.Count > 0)
-				return monkeyList;
+			if(monkeyList?.Count > 0) return monkeyList;
 
 			var url = "https://montemagno.com/monkeys.json";
 
