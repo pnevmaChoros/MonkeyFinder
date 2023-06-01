@@ -11,7 +11,6 @@ namespace MonkeyFinder.Services
 		}
 
 		List<Monkey> monkeyList;
-
 		public async Task<List<Monkey>> GetMonkeys()
 		{
 			if(monkeyList?.Count > 0) return monkeyList;
