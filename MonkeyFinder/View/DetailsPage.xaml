@@ -41,8 +41,8 @@
             <VerticalStackLayout Padding="10" Spacing="10">
                 <Label Text="{Binding Monkey.Details}"
                        Style="{StaticResource MediumLabel}"/>
-                
-                <Label Text="{Binding Monkey.Location}, StringFormat='Location: {0}'"
+
+                <Label Text="{Binding Monkey.Location, StringFormat='Location: {0}'}"
                        Style="{StaticResource SmallLabel}"/>
                 
                 <Label Text="{Binding Monkey.Population, StringFormat='Population: {0}'}"
