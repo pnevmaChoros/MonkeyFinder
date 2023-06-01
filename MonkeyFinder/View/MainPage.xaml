@@ -20,6 +20,12 @@
                 <DataTemplate x:DataType="model:Monkey">
                     <Grid Padding="10">
                         <Frame HeightRequest="125" Style="{StaticResource CardView}">
+
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer CommandParameter="{Binding .}"
+                                                      Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MonkeysViewModel}}, Path=GoToDetailsCommand}"
+                            </Frame.GestureRecognizers>
+                            
                             <Grid Padding="0" ColumnDefinitions="125,*">
                                 <Image Aspect="AspectFill" Source="{Binding Image}"
                                        WidthRequest="125"
