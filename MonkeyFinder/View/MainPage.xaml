@@ -10,6 +10,7 @@
     Title="{Binding Title}"
     ios:Page.UseSafeArea="True" >
 
+
     <Grid
         ColumnDefinitions="*,*"
         ColumnSpacing="5"
@@ -25,6 +26,17 @@
             ItemsSource="{Binding Monkeys}"
             SelectionMode="None">
 
+                <CollectionView.EmptyView>
+                    <StackLayout VerticalOptions="Center"
+                                 HorizontalOptions="Center"
+                                 WidthRequest="200"
+                                 HeightRequest="200">
+                        <Image Source="nodata.png"
+                               HorizontalOptions="CenterAndExpand"
+                               VerticalOptions="CenterAndExpand"
+                               Aspect="AspectFill"/>
+                    </StackLayout>
+                </CollectionView.EmptyView>
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:Monkey">
