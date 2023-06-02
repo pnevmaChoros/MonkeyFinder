@@ -5,9 +5,9 @@ namespace MonkeyFinder.ViewModel;
 
 public partial class MonkeysViewModel : BaseViewModel
 {
-	MonkeyService monkeyService;
 	public ObservableCollection<Monkey> Monkeys { get; } = new();
 
+	MonkeyService monkeyService;
 	IConnectivity connectivity;
 	IGeolocation geolocation;
 
@@ -40,29 +40,29 @@ public partial class MonkeysViewModel : BaseViewModel
 					});
 			}
 
-			if (location is null) return;
+			//if (location is null) return;
 
-			var first = Monkeys.OrderBy(m => location.CalculateDistance(m.Latitude, m.Longitude, DistanceUnits.Kilometers)).FirstOrDefault();
+			var first = Monkeys.OrderBy(m => location.CalculateDistance( new Location(m.Latitude, m.Longitude), DistanceUnits.Kilometers)).FirstOrDefault();
 
-			if (first is null) return;
+			//if (first is null) return;
 
 			await Shell.Current.DisplayAlert("Closest Monkey", $"{first.Name} in {first.Location}", "OK");
 		}
 		catch(Exception ex)
 		{
-			Debug.WriteLine(ex);
-			await Shell.Current.DisplayAlert("Error!", "Unable to get closest monkey", "OK");
+			Debug.WriteLine(ex.Message);
+			await Shell.Current.DisplayAlert("Error!", $"Unable to get closest monkey: {ex.Message}", "OK");
 		}
 		
 	}
 
 	[RelayCommand]
-	async Task GotoDetailsAsync(Monkey monkey)
+	async Task GoToDetailsAsync(Monkey monkey)
 	{
 		if (monkey is null) return;
 
 
-		await Shell.Current.GoToAsync($"{nameof(DetailsPage)}?id{monkey.Name}", true, new Dictionary<string, object>
+		await Shell.Current.GoToAsync(nameof(DetailsPage), true, new Dictionary<string, object>
 		{
 			{"Monkey", monkey }
 		});
@@ -92,7 +92,7 @@ public partial class MonkeysViewModel : BaseViewModel
         }
 		catch (Exception ex)
 		{
-			Debug.WriteLine(ex);
+			Debug.WriteLine(ex.Message);
 			await Shell.Current.DisplayAlert("Error!", "Unable to get monkeys", "OK");
 		}
 		finally

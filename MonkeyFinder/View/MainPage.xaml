@@ -26,7 +26,7 @@
             ItemsSource="{Binding Monkeys}"
             SelectionMode="None">
 
-                <CollectionView.EmptyView>
+                <!--<CollectionView.EmptyView>
                     <StackLayout VerticalOptions="Center"
                                  HorizontalOptions="Center"
                                  WidthRequest="200"
@@ -36,7 +36,7 @@
                                VerticalOptions="CenterAndExpand"
                                Aspect="AspectFill"/>
                     </StackLayout>
-                </CollectionView.EmptyView>
+                </CollectionView.EmptyView>-->
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:Monkey">
@@ -46,20 +46,24 @@
                                Style="{StaticResource CardView}">
 
                                 <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer CommandParameter="{Binding .}"
-                                                      Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MonkeysViewModel}}, Path=GoToDetailsCommand}" />
+                                    <TapGestureRecognizer 
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MonkeysViewModel}}, Path=GoToDetailsCommand}" 
+                                        CommandParameter="{Binding .}" />
                                 </Frame.GestureRecognizers>
 
-                                <Grid Padding="0" 
-                                  ColumnDefinitions="125,*">
+                                <Grid 
+                                    Padding="0" 
+                                    ColumnDefinitions="125,*">
 
-                                    <Image Aspect="AspectFill" Source="{Binding Image}"
-                                       WidthRequest="125"
-                                       HeightRequest="125"/>
+                                    <Image 
+                                        Aspect="AspectFill" 
+                                        Source="{Binding Image}"
+                                        WidthRequest="125"
+                                        HeightRequest="125"/>
                                     <VerticalStackLayout
-                                    VerticalOptions="Center"
-                                    Grid.Column="1"
-                                    Padding="10">
+                                        VerticalOptions="Center"
+                                        Grid.Column="1"
+                                        Padding="10">
                                         <Label Style="{StaticResource LargeLabel}" Text="{Binding Name}" />
                                         <Label Style="{StaticResource MediumLabel}" Text="{Binding Location}" />
                                     </VerticalStackLayout>
@@ -72,13 +76,14 @@
 
         </RefreshView>
 
-        <Button Text="Get Monkeys" 
-                Command="{Binding GetMonkeysCommand}"
-                IsEnabled="{Binding IsNotBusy}"
-                Grid.Row="1"
-                Grid.Column="0"
-                Style="{StaticResource ButtonOutline}"
-                Margin="8"/>
+        <Button 
+            Text="Get Monkeys" 
+            Command="{Binding GetMonkeysCommand}"
+            IsEnabled="{Binding IsNotBusy}"
+            Grid.Row="1"
+            Grid.Column="0"
+            Style="{StaticResource ButtonOutline}"
+            Margin="8"/>
 
 
         <Button Text="Find Closest" 

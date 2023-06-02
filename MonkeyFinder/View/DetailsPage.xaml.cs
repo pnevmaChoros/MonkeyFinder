@@ -8,9 +8,9 @@ public partial class DetailsPage : ContentPage
 		BindingContext = viewModel;
 	}
 
-	protected override void OnNavigatedTo(NavigatedToEventArgs args)
-	{
-		base.OnNavigatedTo(args);
-	}
+	//protected override void OnNavigatedTo(NavigatedToEventArgs args)
+	//{
+	//	base.OnNavigatedTo(args);
+	//}
 
 }
